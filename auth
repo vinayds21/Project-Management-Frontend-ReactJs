@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Happay Authentication</title>
+	</head>
+	<body>
+		<div>Please Wait loading...</div>
+
+		<script type="text/javascript">
+			let cid, token, query = window.location.search.split('&');
+			if(query.length > 1){
+				cid = query[0].split('=')[1];
+				token = query[1].split('=')[1];
+				localStorage.setItem('happay.cid',cid);
+				localStorage.setItem('happay.token',token);
+			}
+			// console.log(window.location);
+			window.location = window.location.origin + '/#dashboard';	
+		</script>
+
+	</body>
+</html>

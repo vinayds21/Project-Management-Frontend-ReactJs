@@ -1,0 +1,330 @@
+.cardGallery{
+	cursor: pointer;
+	margin: 0 auto;
+	padding: 40px;
+	transition: all .2s ease-in-out !important;
+    transform: scale(0.95) !important; 
+}
+
+.cardGallery:hover{
+  transform: scale(1.0) !important;
+}
+/* .cardAction .material-icons{
+	transition: all .2s ease-in-out !important;
+    transform: scale(0.95) !important; 
+}
+.cardAction .material-icons:hover{
+	transform: scale(1.0) !important; 
+} */
+.Select--multi .Select-value-icon{
+  cursor: pointer;
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+  border-right: 1px solid #c2e0ff;
+   border-right: 1px solid rgba(0, 126, 255, 0.24);
+  padding: 1px 5px 3px;
+   display: inline-block;
+  vertical-align: middle;
+}
+
+.tagsClass .ReactTags__tag {
+    opacity: 1;
+    max-width: 300px;
+    overflow: auto;
+    word-wrap: break-word;
+}
+div.ReactTags__tagInput{
+  vertical-align: top;
+  width: 350px;
+}
+.padding-10{
+  padding: 10px !important;
+}
+
+.padding-0{
+  padding: 0 !important;
+}
+
+.absolute-center {
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-container {
+  position: relative !important;
+}
+
+.bg-light-blue{
+  background-color: #D9EDF7;
+  border: 1px solid #D9EDF7;
+  border-radius: 4px;
+}
+
+.center-align{
+  text-align: center;
+}
+
+.card-media{
+  background-color: #D9EDF7;
+  min-height: 177px;
+}
+
+.order-card-title {
+  white-space: normal;
+  overflow: hidden;
+}
+
+.order-card-title span:last-child{
+  width: 250px;
+  height: 25px;
+}
+
+/*.react-bs-table table td, .react-bs-table table th{
+  white-space: normal;
+  word-wrap: break-word;
+}*/
+
+.react-bs-table-container tbody td{
+  vertical-align: middle !important;
+}
+
+.react-bs-table-pagination ul.pagination li.active{
+  font-size: 14px;
+}
+
+/* DIALOG RELATED CSS */
+.cellRightMargin{
+  margin-right: 0 !important;
+  /*width: calc(50% - 8px) !important;
+  height: 5em !important;*/
+}
+
+/*upload xl file*/
+.bulkTable .pagination {
+  visibility: visible !important;
+} 
+.bulkTable .react-bs-table-pagination .dropdown {
+  visibility: hidden !important;
+}
+.bulkMultiSelect .Select-control {
+  overflow: auto;
+}
+
+/*------------hover css for action button-----------*/
+.actionButtonHover{
+  cursor : pointer;
+  color : #54a6f7;
+  padding : 4px;
+}
+.actionButtonHover:hover{
+  cursor : pointer;
+  color : #237bfb;
+  font-weight: bold;
+  padding : 4px;
+
+}
+.actionButtonHover.disabled{
+  cursor : default;
+  color : #54a6f7;
+  padding : 4px;
+}
+.adminList button{
+  padding: 0px !important;
+  height: 0px !important;
+}
+.adminList.userDashboard button{
+  top: 4px !important;
+}
+/*removing ripple effect from all save, cancel, and seondary buttons*/
+.saveBtn button,.secondarySaveBtn button,.cancelBtn button, .saveBtn button div,.secondarySaveBtn button div,.cancelBtn button div{
+  transition: none !important;
+  transform: none !important;
+  border-radius: 100px;
+}
+
+/*stateMachine flow chart style start from here */
+
+.demo {
+    /* for IE10+ touch devices */
+    touch-action:none;
+}
+
+.w {
+    padding: 16px;
+    position: absolute;
+    z-index: 4;
+    border: 1px solid #2e6f9a;
+    box-shadow: 2px 2px 19px #e0e0e0;
+    -o-box-shadow: 2px 2px 19px #e0e0e0;
+    -webkit-box-shadow: 2px 2px 19px #e0e0e0;
+    -moz-box-shadow: 2px 2px 19px #e0e0e0;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    opacity: 0.8;
+    cursor: move;
+    background-color: white;
+    font-size: 11px;
+    -webkit-transition: background-color 0.25s ease-in;
+    -moz-transition: background-color 0.25s ease-in;
+    transition: background-color 0.25s ease-in;
+}
+
+.w:hover {
+    background-color: #5c96bc;
+    color: white;
+
+}
+
+.aLabel {
+    -webkit-transition: background-color 0.25s ease-in;
+    -moz-transition: background-color 0.25s ease-in;
+    transition: background-color 0.25s ease-in;
+}
+
+.aLabel.jsplumb-hover, .jsplumb-source-hover, .jsplumb-target-hover {
+    background-color: #1e8151;
+    color: white;
+}
+
+.aLabel {
+    background-color: white;
+    opacity: 0.8;
+    padding: 0.3em;
+    border-radius: 0.5em;
+    border: 1px solid #346789;
+    cursor: pointer;
+    width: 30px;
+    display:inline-block;
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+}
+
+#ep-tooltip {
+    font-size: 12px;
+    border: solid 1px black;
+    display: none;
+    z-index: 10000;
+    position: absolute;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.ep {
+    position: absolute;
+    bottom: 37%;
+    right: 5px;
+    width: 1em;
+    height: 1em;
+    background-color: orange;
+    cursor: pointer;
+    box-shadow: 0 0 2px black;
+    -webkit-transition: -webkit-box-shadow 0.25s ease-in;
+    -moz-transition: -moz-box-shadow 0.25s ease-in;
+    transition: box-shadow 0.25s ease-in;
+}
+.ep:hover {
+    box-shadow: 0 0 6px black;
+}
+.edit{
+    position: absolute;
+    display:block;
+    bottom:6%;
+    left: 5px;
+    width: 2.5em;
+    height: 1.5em;
+    background-color: #000000;
+    text-align:center;
+    cursor: pointer;
+    align-items: center;
+    color: white;
+    justify-content: center;
+    box-shadow: 0 0 2px black;
+    border-radius: 4px;
+    padding-bottom: 6px;
+    -webkit-transition: -webkit-box-shadow 0.25s ease-in;
+    -moz-transition: -moz-box-shadow 0.25s ease-in;
+    transition: box-shadow 0.25s ease-in;
+}
+.edit:hover {
+    box-shadow: 0 0 6px black;
+}
+
+
+.statemachine-demo .jsplumb-endpoint {
+    z-index: 3;
+}
+
+.dragHover {
+    border: 2px solid orange;
+}
+
+path, .jsplumb-endpoint { cursor:pointer; }
+
+/*stateMachine flow chart style end here */
+/* Dialog - Set Limit*/
+.set-limit{
+  padding-top: 0 !important;
+}
+
+
+/*-----------------------Scroll bar css---------------------*/
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 8px;
+}
+ 
+/* Track */
+/*::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}*/
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #737373; 
+    /*-webkit-box-shadow: inset 0 0 6px #f4f4f4; */
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #fff; 
+}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.rechargeplans: hover{
+    cursor: pointer !important;
+    background-color: #ebf0f7 !important;
+ }
+
+.table>thead>tr>th{
+  padding: 5px !important;
+}
+
+.chipDeleteIcon svg {
+  width: 20px !important;
+  height: 20px !important;
+  margin: -1px 4px 0px -8px !important;
+}
+.searchableSelectInput {
+  margin:0px 6px 0px 3px; 
+  outline: 0;
+  border-width: 0 0 2px 0;
+  border-color: blue
+}

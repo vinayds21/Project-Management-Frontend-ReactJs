@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Speed Test</title>
+
+    <script src="../../dist/JsBarcode.all.js"></script>
+
+  </head>
+  <body>
+    <svg id="barcode1"></svg>
+    <svg id="barcode2"
+          jsbarcode-format="ean13"
+          jsbarcode-value="0843788027640">
+    </svg>
+
+    <script>
+    JsBarcode("#barcode1", "0843788027640", {
+      format: "ean13",
+      valid: function(v) {
+        console.log(v);
+      }
+    });
+
+    JsBarcode('#barcode2')
+      .options({ valid: function(v) { console.log(v); } })
+      .init()
+    </script>
+  </body>
+</html>

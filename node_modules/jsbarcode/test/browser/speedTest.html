@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Speed Test</title>
+
+    <script src="../../dist/JsBarcode.all.js"></script>
+
+    <script>
+      window.onload = function(){
+        var barcodesElements = document.getElementById('barcodes');
+
+        var start = new Date();
+        var numberOfBarcodes = 100;
+        for (var i = 1; i <= numberOfBarcodes; i++) {
+          var newBarcodeElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          barcodesElements.appendChild(newBarcodeElement);
+          JsBarcode(newBarcodeElement, i);
+        }
+
+        var time = (new Date()) - start;
+        document.getElementById('result').innerHTML =
+          numberOfBarcodes + ' barcodes took ' + time + 'ms to render.';
+
+      }
+    </script>
+  </head>
+  <body>
+    <div id="result">
+
+    </div>
+    <div id="barcodes">
+
+    </div>
+  </body>
+</html>

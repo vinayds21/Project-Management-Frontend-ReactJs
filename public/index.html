@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-us" manifest="cache.appcache">
+<head>
+	<title>Project Management</title>
+	<link rel="icon" href="" type="image/png" sizes="16x16">
+	<meta charset="utf-8">
+	<meta name="description" content="Happay is a prepaid card based, business expense management solution that automates your expense workflow from purchase to accounting, and enables real-time visibility and control over employee spending."/>
+    <meta name="keywords" content="expense management, employee cash advance, expense tracking,expense visibility, expense control, travel and expense, petty cash, business expense, expense report, prepaid expense card, corporate card"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
+	<meta name="robots" content="noindex, follow"/>
+	<link rel="stylesheet" href="assets/css/material.css" />
+	<link rel="stylesheet" href="assets/css/custom.css" />
+	
+ 	<link rel="stylesheet" href="assets/css/react-select.css" />
+	<link rel="stylesheet" href="assets/css/material-icons.css" />
+	<link rel="stylesheet" href="assets/css/react-bootstrap-table-all.min.css" />
+	<link rel='stylesheet' href='assets/css/fullcalendar.min.css' />
+
+	<link rel="stylesheet" href="assets/css/react-tag.css" />
+	<link rel="stylesheet" href="assets/css/styles.css" />
+	<link rel="stylesheet" href="assets/css/tooltip.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/selectivity-react.min.css" />
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+	<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+	
+	<style type="text/css">
+		@font-face {
+		    font-family: 'Roboto-Regular';
+		    src: url('assets/fonts/Roboto-Regular.ttf');
+		}
+		@font-face {
+		    font-family: 'Roboto-Medium';
+		    src: url('assets/fonts/Roboto-Medium.ttf');
+		}
+		@font-face {
+		    font-family: 'Roboto-Light';
+		    src: url('assets/fonts/Roboto-Light.ttf');
+		}
+		@font-face {
+		    font-family: 'FuturaStd-Book';
+		    src: url('assets/fonts/FuturaStd-Book.otf');
+		}
+		@font-face {
+		    font-family: 'FuturaStd-Medium';
+		    src: url('assets/fonts/FuturaStd-Medium.otf');
+		}
+		@font-face {
+		    font-family: 'FuturaStd-Light';
+		    src: url('assets/fonts/FuturaStd-Light.otf');
+		}
+		th {
+		    font-weight: 200;
+		}
+		.table>tbody>tr>td {
+			border-top:0px;
+		}
+		.mdl-layout__drawer-button{
+			display: none;
+		}
+		.mdl-layout__header.is-compact{
+			max-height:100px;
+		}
+		.middleHeader{
+			padding: 0 10px 0 20px;
+		}
+		.circleBase {
+		    border-radius: 50%;
+		}
+		.ril-close{
+			float: none;
+			background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIj48cGF0aCBkPSJtIDEsMyAxLjI1LC0xLjI1IDcuNSw3LjUgNy41LC03LjUgMS4yNSwxLjI1IC03LjUsNy41IDcuNSw3LjUgLTEuMjUsMS4yNSAtNy41LC03LjUgLTcuNSw3LjUgLTEuMjUsLTEuMjUgNy41LC03LjUgLTcuNSwtNy41IHoiIGZpbGw9IiNGRkYiLz48L3N2Zz4=") no-repeat 50% !important;
+		}
+		.activeTab {
+			color: #ffffff !important;
+			line-height: 40px !important;
+			font-family: Roboto-Medium;
+			font-size: 14px;
+			background: #237BFB;
+			width: 160px;
+			padding: 0px !important;
+			text-align: center;
+			text-decoration: none !important;
+		}
+		.minheaderRowTextStyle{
+		    white-space: normal;
+		    line-height: 10px !important;
+		    border: none;
+		    font-family: Roboto-Regular;
+		    font-size: 12px;
+		    color: #4a4a4a !important;
+		    font-weight: normal;
+		    padding: 5px !important;
+		}
+		#loading {
+		    position: absolute;
+		    width: 100%;
+		    height: 100%;
+		    z-index: 1000;
+		    background-color: #f5f5f5;
+		}
+		.cmsg {
+		    margin: 1em;
+		}
+		.msg {
+		    margin-top: 150px;
+		    text-align: center;
+		    font-weight: bold;
+		}
+		.lpb {
+		    text-align: center;
+		    width: 350px;
+		    border: 1px solid #999;
+		    padding: 1px;
+		    height: 15px;
+		    margin: 10px auto 0;
+		}
+		#lpt {
+		    width: 0;
+		    height: 100%;
+		    background-color: #38aac3;
+		    background-repeat: repeat-x;
+		    background-position: 0 0;
+		    background-size: 16px 8px;
+		    background-image: linear-gradient(315deg,transparent,transparent 33%,#73DEAA 33%,#73DEAA 66%,transparent 66%,transparent);
+		}
+		.loginBlockStyle{
+			text-align : left;
+			margin: 90px auto 0 auto;
+			width: 30%
+		}
+		.treeview-menu{
+			display: block;
+		    list-style: none;
+		    padding: 10px 0 5px 20px;
+		}
+		.menu-open{
+			display: block;
+		}
+		.menu-closed{
+			display: none;
+		}
+		.notificationBlockStyle{
+			padding:10px;
+		}
+		.fontStyle{
+			color: rgb(66,66,66) !important;
+		    text-decoration: none !important;
+		    margin: 0 !important;
+		    width: 100%;
+		    height: 100%;
+		    font-size: 14px !important;
+		    font-weight: 400 !important;
+		    line-height: 24px !important;
+		    letter-spacing: 0 !important;
+		    opacity: 0.87 !important;
+		}
+		html,body{
+			overflow-x: hidden!important;
+		    -webkit-font-smoothing: antialiased;
+		    min-height: 100%;
+		    background: #ececec;
+		    font-family: Roboto-Regular;
+		    height: 100%;
+    		width: 100%;
+		}
+		input:-webkit-autofill{
+			background-color: transparent !important;
+			-webkit-box-shadow: 0 0 0px 1000px #fefefe inset !important;
+		}
+		a{
+			text-decoration: none !important;
+		}
+		/*a:hover{
+			background-color: #237BFB !important;
+			padding: 0px !important;
+			line-height: 40px !important;
+			width: 124px;
+		}*/
+		.snackbarStyle{
+			max-width: 1000px !important;
+		}
+		.hidden-scrollbar{
+			padding: 0px !important;
+			position: absolute;
+			color:white;  
+		  	overflow:hidden;
+		  	text-align:justify; 
+		}
+		.hidden-scrollbar .inner {
+		  	overflow:auto;
+		  	position: fixed;
+		  	margin:15px -300px 15px 15px;
+		  	padding: 0px !important;
+		  	padding-right:30px !important; /* Samakan dengan besar margin negatif */
+		}
+		.inner::-webkit-scrollbar { 
+		    display: none; 
+		}
+		.inboxClass{
+			padding: 0px !important;
+		}
+		.react-bs-table-search-form{
+			width: 200px;
+			float: right;
+		}
+		.pagination{
+			visibility: hidden;
+		}
+		.mdl-navigation__link:hover {
+			background-color: #237BFB !important;
+    		line-height: 40px;
+		}
+		.satya{
+			background:'#fff';
+			border-bottom:'2px solid #606060';
+		}
+		.selectivity-single-select{
+			background: transparent;
+		}
+		.SelectivityReact .selectivity-single-select{
+			border-bottom: 2px solid #eee;
+			color: rgb(96, 96, 96);
+		    font-size: 14px;
+		    font-family: Roboto-Light;
+		}
+		.SelectivityReact.hover{
+			border:none;
+			background: transparent;
+			border-bottom: 1px solid #eee
+		}
+		.selectivity-results-container{
+			height:15em;
+			overflow-y: scroll;
+		}
+		.selectivity-dropdown.has-search-input {
+		    /*height:15em;
+		    overflow-y: scroll;*/
+		    transform: translateY(-12em); 
+		    
+		}
+		/*.selectivity-dropdown.has-search-input:target {
+		  animation: highlight 1s ease;  
+		  transform: translateY(20px);     
+		}*/
+		.SelectivityReact.open.hover{
+			display: inline-grid;
+		}
+		@media screen and (max-width: 500px) {
+			.addExpenseFooter{
+				width: 94% !important;
+			}
+		}
+		@media screen and (min-width: 501px) and (max-width: 800px) {
+			.addExpenseFooter{
+				width: 96% !important;
+			}
+		}
+	</style>
+</head>
+<body >
+	<div id="app">
+		<div id="loading">
+			<div class="cmsg">
+				<div class="msg"><img src=""></div>
+				<div class="lpb">
+					<div id="lpt" style="width: 84%;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var  percent = 30,
+	 	timePeriod = 100;
+	 	function progressBar() {
+			if(percent < 100) {
+		    	percent = percent + 1
+		    	if(document.getElementById('lpt')){
+			    	document.getElementById('lpt').style.width = percent+'%';
+			    	setTimeout ("progressBar()", timePeriod);
+			    }
+		  	} else {
+		    	window.status = "[JavaScriptSource] - tons of cut and paste JavaScript examples";
+		  	}
+		}
+		progressBar();
+	</script>
+	<script src="material.js"></script>
+	<script type="text/javascript" src="vendor.bundle.js"></script>
+	<script type="text/javascript" src="bundle.js?v=1.15"></script>
+</body>
+</html>
+
