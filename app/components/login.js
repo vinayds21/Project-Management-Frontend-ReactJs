@@ -11,29 +11,50 @@ import Style from '../constants/style';
 import SaveButton from '../constants/savebutton';
 import SecondarySaveButton from '../constants/secondarysavebutton';
 
+import UserInfoStores from '../stores/UserInfoStores';
+import * as LoginRegisterAction from '../actions/loginRegisterAction'
+
 export default class Login extends React.Component {
     constructor() {
         super();
         this.state = {
             mobile:'',
-            password:''
+            password:'',
+            mobileErr:'',
+            passwordErr:'',
         };
-    }
-
-    componentWillMount(){
-
-    }
-
-    componentWillUnmount(){
-
     }
 
     _handleSubmit(evt){
         evt.preventDefault();
+        let mobileNumber = this.state.mobile;
+        let password = this.state.password;
+
+        if (!mobileNumber || mobileNumber.length != 10) {
+            this.setState({mobileErr:'Please enter a valid mobile number'});
+            // UserInfoStores.showSnackbar('Please enter a valid mobile number');
+            return false;
+        }
+        if (!password) {
+            this.setState({passwordErr:'Please enter password'});
+            // UserInfoStores.showSnackbar('Please enter password');
+            return false;
+        }
+
+        let data = {mobile:mobileNumber, password:password};
+        UserInfoStores.showLoader(true);
+        LoginRegisterAction._userLogin(data);
     }
 
-    _fieldOnChange(){
-
+    _fieldOnChange(type, event, value){
+        if (type == 'mobile') {
+            if(isNaN(value))
+                return false;
+            this.setState({mobile:value,mobileErr:''});
+        }
+        if (type == 'password') {
+            this.setState({password:value,passwordErr:''});
+        }
     }
 
     render() {  
@@ -42,14 +63,16 @@ export default class Login extends React.Component {
                     <div style={Style.loginPage.logoDivStyle}>
                         <div style={Style.loginPage.textBelowLogo}>Sign In</div>
                     </div>
-                    <form onSubmit={this._handleSubmit} style={{textAlign:'center'}}>
+                    <form onSubmit={this._handleSubmit.bind(this)} style={{textAlign:'center'}}>
                         <div style={{margin:40}}>
                             <TextField
                                 id="mobile"
                                 key={1}
                                 style={{width: '100%'}}
                                 hintText="Enter Mobile Number"
-                                onChange={this._fieldOnChange}
+                                maxLength={10}
+                                errorText={this.state.mobileErr}
+                                onChange={this._fieldOnChange.bind(this,'mobile')}
                                 autoFocus={true}
                                 value={this.state.mobile}
                                 label="Mobile Number"
@@ -62,8 +85,10 @@ export default class Login extends React.Component {
                                 id="password"
                                 key={2}
                                 style={{width: '100%'}}
+                                type="password"
                                 hintText="Enter Password"
-                                onChange={this._fieldOnChange}
+                                errorText={this.state.passwordErr}
+                                onChange={this._fieldOnChange.bind(this,'password')}
                                 value={this.state.password}
                                 label="Password"
                                 underlineFocusStyle={Style.floatingUnderLineStyle}

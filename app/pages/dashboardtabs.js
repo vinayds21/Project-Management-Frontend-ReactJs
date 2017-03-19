@@ -10,11 +10,10 @@ import Api from '../constants/api';
 import Styles from '../constants/style';
 
 /*-------------Other own component files------------------*/
-import Login from '../components/login';
-import Register from '../components/register';
-import UserRegister from '../components/userregister'
+import Dashboard from '../components/dashboard';
+import Project from '../components/projects';
 
-export default class LoginTabs extends React.Component{
+export default class DashboardTabs extends React.Component{
     constructor(){
         super();
     }
@@ -28,15 +27,14 @@ export default class LoginTabs extends React.Component{
 
     render(){
         let app;
-        let tabName = this.props.params.loginTabs;
+        let tabName = this.props.params.dashboardTab;
+        console.log('hey here', tabName);
         switch(tabName){
-            case 'register':  app = (<Register/>);
+            case 'project':  app = (<Project/>);
                                     break;
-            case 'userregister': app = (<UserRegister/>);
-                                break;
-            default: app = (<Login/>)
+            default: app = (<Dashboard/>)
         }
-        return (    
+        return (
                 <div style={{height:'100%'}}>
                     {app}
                 </div>

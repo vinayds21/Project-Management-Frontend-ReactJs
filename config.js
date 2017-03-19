@@ -7,7 +7,7 @@
 // var BASEURL = 'https://a5fe1e4c.ngrok.io/';
 // var BASEURL = 'http://happayv2.southeastasia.cloudapp.azure.com:8083/';
 // var BASEURL = 'http://192.168.3.133:9001/'; // abhishek's local server
-var BASEURL = 'http://54.251.162.106:8010/'; // back-end development
+var BASEURL = 'http://127.0.0.1:8000/'; // back-end development
 // var BASEURL = 'http://52.77.239.108:8010/'; //test team back-end latest
 // var BASEURL = 'http://api-v2.happay.in/';
 // var BASEURL = 'http://873fdb14.ngrok.io/';

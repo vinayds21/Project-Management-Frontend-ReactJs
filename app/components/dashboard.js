@@ -15,22 +15,6 @@ export default class Dashboard extends React.Component {
         super();
     }
 
-    componentWillMount(){
-
-    }
-
-    componentWillUnmount(){
-
-    }
-
-    _handleSubmit(){
-
-    }
-
-    _fieldOnChange(){
-
-    }
-
     render() {  
         return(<div>inside dashboard</div>);
     }

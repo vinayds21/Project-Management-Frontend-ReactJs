@@ -8,11 +8,11 @@ import Moment from 'moment';
 
 module.exports ={
 	_setKey: function(key,value){
-		localStorage.setItem('happay.'+key,value);
+		localStorage.setItem('PT-Management.'+key,value);
 	},
 
 	_getKey: function(key){
-		return localStorage.getItem('happay.'+key);
+		return localStorage.getItem('PT-Management.'+key);
 	},
 
 	_removeKey: function(key,value){
@@ -23,7 +23,7 @@ module.exports ={
 		let len = localStorage.length;
 		for (let i = len - 1; i >= 0; i--) {
             let key = localStorage.key(i);
-            if (key != null && key != undefined && key.indexOf('happay.') == 0) {
+            if (key != null && key != undefined && key.indexOf('PT-Management.') == 0) {
                 localStorage.removeItem(key);
             }
         }
@@ -86,7 +86,7 @@ module.exports ={
 	        else
 	            msg = 'It seems something wrong with your internet.Please check your internet connection and try again';
 	    } else if(status == 400){
-	    	msg = (obj && obj.res_str ? obj.res_str : 'Sorry to process your request right now.If you are not expecting this please contact care@happay.in');
+	    	msg = (obj && obj.res_str ? obj.res_str : 'Sorry to process your request right now.');
 	    } else if(status == 403){
 	    	msg = 'You are not permitted for this action';
 	    } else if(status == 405){
@@ -95,7 +95,7 @@ module.exports ={
 	        this._clearStorage();
       		hashHistory.push('/');
 	    } else if(status == 500){
-	        msg = 'Sorry to process your request right now.If you are not expecting this please contact care@happay.in';
+	        msg = 'Sorry to process your request right now.';
 	    } else{
 	        msg = 'Sorry! Could not process your request currently, please try after some time.';   
 	    }
@@ -111,21 +111,13 @@ module.exports ={
 			processData: (cType == 'multipart/form-data' ? false :true),
 			dataType: (cType == 'multipart/form-data' ? '' :'json'),
 			beforeSend: (xhr) => {
-				if(this._getKey('cid') && this._getKey('token')){
-					xhr.setRequestHeader('HAPPAY-CID',this._getKey('cid'));
-					xhr.setRequestHeader('HAPPAY-TOKEN',this._getKey('token'));
+				if(this._getKey('uid') && this._getKey('token')){
+					xhr.setRequestHeader('REQUEST_TOKEN',this._getKey('uid'));
+					xhr.setRequestHeader('UID',this._getKey('token'));
 				}
 			},
 	        contentType: cType ? false : "application/x-www-form-urlencoded",	        
 	        success: (data,textStatus, jqXHR) => {
-	        	// console.log('data', jqXHR, jqXHR.getResponseHeader('HAPPAY-CID'));
-	        	if(jqXHR.getResponseHeader('HAPPAY-CID')){
-	        		this._setKey('cid',jqXHR.getResponseHeader('HAPPAY-CID'));
-	        	}
-	        	if(jqXHR.getResponseHeader('HAPPAY-TOKEN')){
-	        		this._setKey('token',jqXHR.getResponseHeader('HAPPAY-TOKEN'));
-	        	}
-	        	// console.log(this._getKey("cid"),this._getKey("token"))
 	        	dispatcher.dispatch({ 
                     type: 'LOADER', 
                     loader: false 

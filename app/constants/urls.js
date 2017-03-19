@@ -2,5 +2,7 @@
 module.exports = {
 	ORG_REGISTER: '',
 	EMP_REGISTER: '',
+
+    USER_LOGIN:'user/v1/login/',
 }
 

@@ -23,14 +23,6 @@ export default class Projects extends React.Component {
 
     }
 
-    _handleSubmit(){
-
-    }
-
-    _fieldOnChange(){
-
-    }
-
     render() {  
         return(<div>inside project</div>);
     }

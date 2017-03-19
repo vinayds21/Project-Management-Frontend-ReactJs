@@ -1,6 +1,6 @@
 /*
 Author: Vinay D S
-Page Desc: Company registration page
+Page Desc: User registration page
 */
 
 import React from 'react';
@@ -12,11 +12,11 @@ import Style from '../constants/style';
 import SaveButton from '../constants/savebutton';
 import SecondarySaveButton from '../constants/secondarysavebutton';
 
-export default class Register extends React.Component {
+export default class UserRegister extends React.Component {
     constructor() {
         super();
         this.state = {
-            companyName:'',
+            fName:'',
             companyType:'',
             companyWeb:'',
             addLine1:'',
@@ -47,124 +47,110 @@ export default class Register extends React.Component {
         return(<div style={Style.loginPage.mainContainer}>
                 <div style={Style.loginPage.leftContainerRegister}>
                     <div style={Style.loginPage.logoDivStyle}>
-                        <div style={Style.loginPage.textBelowLogo}>Register Company</div>
+                        <div style={Style.loginPage.textBelowLogo}>Register First User</div>
                     </div>
                     <form onSubmit={this._handleSubmit} style={{textAlign:'center'}}>
                             <Grid>
                                 <Cell col={6}>
                                     <TextField
-                                        id="name"
+                                        id="Fname"
                                         key={1}
                                         style={{width: '100%'}}
-                                        hintText="Enter Company Name"
+                                        hintText="Enter First Name"
                                         onChange={this._fieldOnChange}
                                         autoFocus={true}
-                                        value={this.state.companyName}
-                                        label="Company Name"
+                                        value={this.state.fName}
+                                        label="First Name"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
                                         floatingLabelFocusStyle={Style.floatingLabelStyle}
-                                        floatingLabelText="Company Name"
+                                        floatingLabelText="First Name"
                                     />
                                     <TextField
-                                        id="compType"
+                                        id="Lname"
                                         key={2}
                                         style={{width: '100%'}}
-                                        hintText="Company Type (Eg. Private, Public Sector)"
+                                        hintText="Enter Last Name"
                                         onChange={this._fieldOnChange}
-                                        value={this.state.companyType}
-                                        label="Company Type"
+                                        value={this.state.Lname}
+                                        label="Last Name"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
                                         floatingLabelFocusStyle={Style.floatingLabelStyle}
-                                        floatingLabelText="Company Type"
+                                        floatingLabelText="Last Name"
                                     />
                                     <TextField
-                                        id="compWeb"
+                                        id="mobile"
                                         key={3}
                                         style={{width: '100%'}}
-                                        hintText="Enter Company Website"
+                                        hintText="Enter Mobile Number"
                                         onChange={this._fieldOnChange}
                                         value={this.state.companyWeb}
-                                        label="Company Website"
+                                        label="Mobile Number"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
                                         floatingLabelFocusStyle={Style.floatingLabelStyle}
-                                        floatingLabelText="Company Website"
+                                        floatingLabelText="Mobile Number"
                                     />
                                     <TextField
-                                        id="addrs1"
+                                        id="email"
                                         key={4}
                                         style={{width: '100%'}}
-                                        hintText="Enter Address Line 1"
+                                        hintText="Enter Email"
                                         onChange={this._fieldOnChange}
                                         value={this.state.addLine1}
-                                        label="Address Line 1"
+                                        label="Email Id"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
                                         floatingLabelFocusStyle={Style.floatingLabelStyle}
-                                        floatingLabelText="Address Line 1"
+                                        floatingLabelText="Email Id"
                                     />
                                 </Cell>
                                 <Cell col={6}>
                                     <TextField
-                                        id="addrs2"
+                                        id="designation"
                                         key={5}
                                         style={{width: '100%'}}
-                                        hintText="Enter Address Line 2"
+                                        hintText="Enter Designation"
                                         onChange={this._fieldOnChange}
-                                        value={this.state.addLine2}
-                                        label="Address Line 2"
+                                        value={this.state.userDesignation}
+                                        label="Designation"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
                                         floatingLabelFocusStyle={Style.floatingLabelStyle}
-                                        floatingLabelText="Address Line 2"
+                                        floatingLabelText="Designation"
                                     />
                                     <TextField
-                                        id="state"
+                                        id="passwd"
                                         key={6}
                                         style={{width: '100%'}}
-                                        hintText="Enter State"
+                                        hintText="Enter Password"
                                         onChange={this._fieldOnChange}
-                                        value={this.state.compState}
-                                        label="State"
+                                        value={this.state.passwd}
+                                        label="Password"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
                                         floatingLabelFocusStyle={Style.floatingLabelStyle}
-                                        floatingLabelText="State"
+                                        floatingLabelText="Password"
                                     />
                                     <TextField
-                                        id="city"
-                                        key={6}
-                                        style={{width: '100%'}}
-                                        hintText="Enter City"
-                                        onChange={this._fieldOnChange}
-                                        value={this.state.compCity}
-                                        label="City"
-                                        underlineFocusStyle={Style.floatingUnderLineStyle}
-                                        floatingLabelStyle={Style.loginPage.floatingTextStyle}
-                                        floatingLabelFocusStyle={Style.floatingLabelStyle}
-                                        floatingLabelText="City"
-                                    />
-                                    <TextField
-                                        id="pin"
+                                        id="confirm"
                                         key={7}
                                         style={{width: '100%'}}
-                                        hintText="Enter Pin"
+                                        hintText="Confirm Password"
                                         onChange={this._fieldOnChange}
-                                        value={this.state.pin}
-                                        label="pin"
+                                        value={this.state.confirmPassword}
+                                        label="Confirm Password"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
                                         floatingLabelFocusStyle={Style.floatingLabelStyle}
-                                        floatingLabelText="pin"
+                                        floatingLabelText="Confirm Password"
                                     />
                                     <br/>
                                     <br/>
                                     <br/>
                                     <div style={{float:'left'}}>
-                                        <SaveButton label="Next" type="submit"/>
-                                        <Link to="/">Back to login</Link>
+                                        <SaveButton label="Submit" type="submit"/>
                                     </div>
                                 </Cell>
                             </Grid>

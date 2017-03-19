@@ -12,10 +12,10 @@ const muiTheme = getMuiTheme({
 });
 
 // All pages includes here
-import LoginTabs from './pages/loginTabs'
-import Dashboard from './components/dashboard'
-import Projects from './components/projects'
-import Tasks from './components/tasks'
+import LoginTabs from './pages/logintabs';
+import Dashboard from './components/dashboard';
+import DashboardTabs from './pages/dashboardtabs';
+import Project from './components/projects';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -26,9 +26,9 @@ ReactDOM.render((
 		    <Route path="/" component={LoginTabs}>
                 <Route path="/:loginTabs" component={LoginTabs}/>
             </Route>
-            <Route path="/dashboard" component={Dashboard}/>
-            <Route path="/projects" component={Projects}/>
-            <Route path="/tasks" component={Tasks}/>
+            <Route path="/dashboard" component={Dashboard}>                    
+                <Route path="/:dashboardTab" component={DashboardTabs}/>
+            </Route>
 		</Router>
 	</MuiThemeProvider>
 ), document.getElementById('app'));
