@@ -9,6 +9,8 @@ import {Grid, Cell} from 'react-mdl';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import Style from '../constants/style';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import SaveButton from '../constants/savebutton';
 import SecondarySaveButton from '../constants/secondarysavebutton';
 
@@ -17,13 +19,17 @@ export default class UserRegister extends React.Component {
         super();
         this.state = {
             fName:'',
-            companyType:'',
-            companyWeb:'',
-            addLine1:'',
-            addLine2:'',
-            compState:'',
-            compCity:'',
-            pin:'',
+            Lname:'',
+            mobileNumber:'',
+            email:'',
+            userDesignation:'',
+            passwd:'',
+            confirmPassword:'',
+            userType:'1',
+
+            passwdErr:'',
+            mobileErr:'',
+            errStr:'',
         }
     }
 
@@ -37,9 +43,65 @@ export default class UserRegister extends React.Component {
 
     _handleSubmit(evt){
         evt.preventDefault();
+        let FirstName = this.state.fName;
+        let lastName = this.state.Lname;
+        let mobileNumber = this.state.mobileNumber;
+        let email = this.state.email;
+        let userDesignation = this.state.userDesignation;
+        let passwd = this.state.passwd;
+        let confirmPassword = this.state.confirmPassword;
+        let userType = this.state.userType;
+
+        if (!FirstName || !lastName || !emial || !userDesignation) {
+            this.setState({errStr:'Please fill this field', mobileErr:'Enter valid mobile number', passwdErr :'enter valid passwd'});
+            return false;
+        }
+        if (mobileNumber.length != 10) {
+            this.setState({mobileErr:'Enter valid mobile number'});
+            return false;
+        }
+        if (passwd != confirmPassword) {
+            this.setState({passwdErr :'enter valid passwd'});
+            return false;
+        }
+        let data = {
+            first_name:FirstName,
+            last_name:lastName,
+            user_mobile:mobileNumber,
+            user_mail:email,
+            user_designation:userDesignation,
+            user_type:userType,
+            org_id:Api._getKey('org_id'),
+            password:confirmPassword,
+        }
+        UserInfoStores.showLoader(true);
+        LoginRegisterAction._firstUserRegister(data);
     }
 
-    _fieldOnChange(){
+    _fieldOnChange(type, event, value){
+        if (type == 'fName') {
+            this.setState({fName:value});
+        }
+        if (type == 'Lname') {
+            this.setState({Lname:value});
+        }
+        if (type == 'mobileNumber') {
+            if(isNaN(value))
+                return false;
+            this.setState({mobileNumber:value});
+        }
+        if (type == 'email') {
+            this.setState({email:value});
+        }
+        if (type == 'userDesignation') {
+            this.setState({userDesignation:value});
+        }
+        if (type == 'passwd') {
+            this.setState({passwd:value});
+        }
+        if (type == 'confirmPassword') {
+            this.setState({confirmPassword:value});
+        }
 
     }
 
@@ -49,7 +111,7 @@ export default class UserRegister extends React.Component {
                     <div style={Style.loginPage.logoDivStyle}>
                         <div style={Style.loginPage.textBelowLogo}>Register First User</div>
                     </div>
-                    <form onSubmit={this._handleSubmit} style={{textAlign:'center'}}>
+                    <form onSubmit={this._handleSubmit.bind(this)}>
                             <Grid>
                                 <Cell col={6}>
                                     <TextField
@@ -57,7 +119,7 @@ export default class UserRegister extends React.Component {
                                         key={1}
                                         style={{width: '100%'}}
                                         hintText="Enter First Name"
-                                        onChange={this._fieldOnChange}
+                                        onChange={this._fieldOnChange.bind(this,'fName')}
                                         autoFocus={true}
                                         value={this.state.fName}
                                         label="First Name"
@@ -71,7 +133,7 @@ export default class UserRegister extends React.Component {
                                         key={2}
                                         style={{width: '100%'}}
                                         hintText="Enter Last Name"
-                                        onChange={this._fieldOnChange}
+                                        onChange={this._fieldOnChange.bind(this,'Lname')}
                                         value={this.state.Lname}
                                         label="Last Name"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
@@ -84,8 +146,8 @@ export default class UserRegister extends React.Component {
                                         key={3}
                                         style={{width: '100%'}}
                                         hintText="Enter Mobile Number"
-                                        onChange={this._fieldOnChange}
-                                        value={this.state.companyWeb}
+                                        onChange={this._fieldOnChange.bind(this,'mobileNumber')}
+                                        value={this.state.mobileNumber}
                                         label="Mobile Number"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
@@ -97,8 +159,8 @@ export default class UserRegister extends React.Component {
                                         key={4}
                                         style={{width: '100%'}}
                                         hintText="Enter Email"
-                                        onChange={this._fieldOnChange}
-                                        value={this.state.addLine1}
+                                        onChange={this._fieldOnChange.bind(this,'email')}
+                                        value={this.state.email}
                                         label="Email Id"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
@@ -107,12 +169,27 @@ export default class UserRegister extends React.Component {
                                     />
                                 </Cell>
                                 <Cell col={6}>
+                                    <SelectField
+                                        key={8}
+                                        floatingLabelText="Select user type"
+                                        value={this.state.userType}
+                                        floatingLabelStyle={Style.floatingLabelStyle}
+                                        disabled={true}
+                                        onChange={(event,index,value)=>{
+                                            this.setState({
+                                                userType: value,
+                                            })
+                                        }}>
+                                          <MenuItem key={9859} value="2" primaryText="Select user type"/>
+                                          <MenuItem key={487643} value="0" primaryText="Employee"/>
+                                          <MenuItem key={6348} value="1" primaryText="Manager"/>
+                                    </SelectField>
                                     <TextField
                                         id="designation"
                                         key={5}
                                         style={{width: '100%'}}
                                         hintText="Enter Designation"
-                                        onChange={this._fieldOnChange}
+                                        onChange={this._fieldOnChange.bind(this,'userDesignation')}
                                         value={this.state.userDesignation}
                                         label="Designation"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
@@ -125,7 +202,7 @@ export default class UserRegister extends React.Component {
                                         key={6}
                                         style={{width: '100%'}}
                                         hintText="Enter Password"
-                                        onChange={this._fieldOnChange}
+                                        onChange={this._fieldOnChange.bind(this,'passwd')}
                                         value={this.state.passwd}
                                         label="Password"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
@@ -138,7 +215,7 @@ export default class UserRegister extends React.Component {
                                         key={7}
                                         style={{width: '100%'}}
                                         hintText="Confirm Password"
-                                        onChange={this._fieldOnChange}
+                                        onChange={this._fieldOnChange.bind(this,'confirmPassword')}
                                         value={this.state.confirmPassword}
                                         label="Confirm Password"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
@@ -147,12 +224,10 @@ export default class UserRegister extends React.Component {
                                         floatingLabelText="Confirm Password"
                                     />
                                     <br/>
-                                    <br/>
-                                    <br/>
-                                    <div style={{float:'left'}}>
-                                        <SaveButton label="Submit" type="submit"/>
-                                    </div>
                                 </Cell>
+                                <div style={Style.loginPage.userRegDivStyle}>
+                                    <SaveButton label="Submit" type="submit"/>
+                                </div>
                             </Grid>
                     </form>
                 </div>

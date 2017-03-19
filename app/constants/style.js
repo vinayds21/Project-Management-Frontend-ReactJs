@@ -94,6 +94,12 @@ module.exports ={
 			width:200,
 			textAlign:'center'
 		},
+		userRegDivStyle:{
+			margin:'auto',
+			marginTop:10,
+			width:200,
+			textAlign:'center'
+		},
 		happayLogo:{
 			paddingBottom:10,
 			borderBottom:'1px solid rgba(74,74,74,0.23)',

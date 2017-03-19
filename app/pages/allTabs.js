@@ -12,27 +12,19 @@ import Styles from '../constants/style';
 /*-------------Other own component files------------------*/
 import Login from '../components/login';
 import Register from '../components/register';
-import UserRegister from '../components/userregister'
+import UserRegister from '../components/userregister';
+import Dashboard from '../components/dashboard'
 
-export default class LoginTabs extends React.Component{
-    constructor(){
-        super();
-    }
-
-    componentWillMount(){
-    }
-
-    componentWillUnmount(){
-
-    }
-
+export default class AllTabs extends React.Component{
     render(){
         let app;
-        let tabName = this.props.params.loginTabs;
+        let tabName = this.props.params.allTabs;
         switch(tabName){
             case 'register':  app = (<Register/>);
                                     break;
             case 'userregister': app = (<UserRegister/>);
+                                break;
+            case 'dashboard': app = (<Dashboard/>);
                                 break;
             default: app = (<Login/>)
         }
