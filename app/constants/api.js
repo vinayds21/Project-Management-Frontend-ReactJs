@@ -29,6 +29,15 @@ module.exports ={
         }
 	},
 
+	_checkAuth(){
+		if (!this._getKey('token') || !this._getKey('uid')) {
+            hashHistory.push('/');
+        }
+        if (this._getKey('token') && this._getKey('uid')){
+            hashHistory.push('/dashboard');
+        }
+	},
+
 	_formatAmount: function(amount)
 	{
 		if (amount == null || amount == undefined || amount == 0)
@@ -112,8 +121,8 @@ module.exports ={
 			dataType: (cType == 'multipart/form-data' ? '' :'json'),
 			beforeSend: (xhr) => {
 				if(this._getKey('uid') && this._getKey('token')){
-					xhr.setRequestHeader('REQUEST_TOKEN',this._getKey('uid'));
-					xhr.setRequestHeader('UID',this._getKey('token'));
+					xhr.setRequestHeader('REQUEST-TOKEN',this._getKey('token'));
+					xhr.setRequestHeader('UID',this._getKey('uid'));
 				}
 			},
 	        contentType: cType ? false : "application/x-www-form-urlencoded",	        

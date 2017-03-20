@@ -10,6 +10,7 @@ import IconButton from 'material-ui/IconButton';
 import Style from '../constants/style';
 import SaveButton from '../constants/savebutton';
 import SecondarySaveButton from '../constants/secondarysavebutton';
+import Api from '../constants/api';
 
 import UserInfoStores from '../stores/UserInfoStores';
 import * as LoginRegisterAction from '../actions/loginRegisterAction';
@@ -23,6 +24,12 @@ export default class Login extends React.Component {
             mobileErr:'',
             passwordErr:'',
         };
+    }
+
+    componentWillMount(){
+        if (Api._getKey('token') && Api._getKey('uid')) {
+            hashHistory.push('/dashboard');
+        }
     }
 
     _handleSubmit(evt){

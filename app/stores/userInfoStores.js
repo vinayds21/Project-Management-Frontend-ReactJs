@@ -22,6 +22,16 @@ class UserInfoStores extends EventEmitter{
 		this.emit('change','loader');
 	}
 
+	setUserData(userData){
+		this.userInfo = userData;
+		console.log('in emit', this.userInfo);
+		this.emit('change', 'userInfo');
+	}
+
+	_getUserInfo(){
+		return this.userInfo;
+	}
+
 	_handleActions(action){
 		switch(action.type){
 			case 'SNACKBAR' : {
@@ -30,6 +40,10 @@ class UserInfoStores extends EventEmitter{
 			}
 			case 'LOADER' : {
 				this.showLoader(action.loader);
+				break;
+			}
+			case 'USERINFO':{
+				this.setUserData(action.response);
 				break;
 			}
 			case 'CLEAR_ALL':{

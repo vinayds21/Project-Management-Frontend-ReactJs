@@ -75,6 +75,8 @@ module.exports = {
             if (userCreds && Object.keys(userCreds).length) {
                 Api._setKey('token', userCreds.token);
                 Api._setKey('uid', userCreds.uid);
+                Api._setKey('org_id', userCreds.org_id);
+                Api._setKey('user_id', userCreds.user_id);
             }
         }
         if (type == 'companyRegister') {

@@ -13,7 +13,7 @@ import SaveButton from '../constants/savebutton';
 import SecondarySaveButton from '../constants/secondarysavebutton';
 
 import UserInfoStores from '../stores/UserInfoStores';
-import * as LoginRegisterAction from '../actions/loginRegisterAction'
+import * as LoginRegisterAction from '../actions/loginRegisterAction';
 
 export default class Register extends React.Component {
     constructor() {

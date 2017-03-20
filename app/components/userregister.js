@@ -84,27 +84,27 @@ export default class UserRegister extends React.Component {
 
     _fieldOnChange(type, event, value){
         if (type == 'fName') {
-            this.setState({fName:value});
+            this.setState({fName:value, errStr:''});
         }
         if (type == 'Lname') {
-            this.setState({Lname:value});
+            this.setState({Lname:value,errStr:''});
         }
         if (type == 'mobileNumber') {
             if(isNaN(value))
                 return false;
-            this.setState({mobileNumber:value});
+            this.setState({mobileNumber:value,mobileErr:''});
         }
         if (type == 'email') {
-            this.setState({email:value});
+            this.setState({email:value,errStr:''});
         }
         if (type == 'userDesignation') {
-            this.setState({userDesignation:value});
+            this.setState({userDesignation:value,errStr:''});
         }
         if (type == 'passwd') {
-            this.setState({passwd:value});
+            this.setState({passwd:value,passwdErr:''});
         }
         if (type == 'confirmPassword') {
-            this.setState({confirmPassword:value});
+            this.setState({confirmPassword:value,passwdErr:''});
         }
 
     }
@@ -127,6 +127,7 @@ export default class UserRegister extends React.Component {
                                         autoFocus={true}
                                         value={this.state.fName}
                                         label="First Name"
+                                        errorText={this.state.errStr}
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
                                         floatingLabelFocusStyle={Style.floatingLabelStyle}
@@ -139,6 +140,8 @@ export default class UserRegister extends React.Component {
                                         hintText="Enter Last Name"
                                         onChange={this._fieldOnChange.bind(this,'Lname')}
                                         value={this.state.Lname}
+                                        errorText={this.state.errStr}
+
                                         label="Last Name"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
@@ -152,6 +155,8 @@ export default class UserRegister extends React.Component {
                                         hintText="Enter Mobile Number"
                                         onChange={this._fieldOnChange.bind(this,'mobileNumber')}
                                         value={this.state.mobileNumber}
+                                        errorText={this.state.mobileErr}
+
                                         label="Mobile Number"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
@@ -165,6 +170,8 @@ export default class UserRegister extends React.Component {
                                         hintText="Enter Email"
                                         onChange={this._fieldOnChange.bind(this,'email')}
                                         value={this.state.email}
+                                        errorText={this.state.errStr}
+
                                         label="Email Id"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
@@ -196,6 +203,8 @@ export default class UserRegister extends React.Component {
                                         onChange={this._fieldOnChange.bind(this,'userDesignation')}
                                         value={this.state.userDesignation}
                                         label="Designation"
+                                        errorText={this.state.errStr}
+
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
                                         floatingLabelFocusStyle={Style.floatingLabelStyle}
@@ -209,6 +218,8 @@ export default class UserRegister extends React.Component {
                                         onChange={this._fieldOnChange.bind(this,'passwd')}
                                         value={this.state.passwd}
                                         label="Password"
+                                        errorText={this.state.passwdErr}
+
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
                                         floatingLabelFocusStyle={Style.floatingLabelStyle}
@@ -221,6 +232,8 @@ export default class UserRegister extends React.Component {
                                         hintText="Confirm Password"
                                         onChange={this._fieldOnChange.bind(this,'confirmPassword')}
                                         value={this.state.confirmPassword}
+                                        errorText={this.state.passwdErr}
+
                                         label="Confirm Password"
                                         underlineFocusStyle={Style.floatingUnderLineStyle}
                                         floatingLabelStyle={Style.loginPage.floatingTextStyle}
