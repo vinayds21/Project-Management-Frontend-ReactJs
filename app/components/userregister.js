@@ -9,10 +9,13 @@ import {Grid, Cell} from 'react-mdl';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import Style from '../constants/style';
+import Api from '../constants/api';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import SaveButton from '../constants/savebutton';
+import UserInfoStores from '../stores/UserInfoStores';
 import SecondarySaveButton from '../constants/secondarysavebutton';
+import * as LoginRegisterAction from '../actions/loginRegisterAction';
 
 export default class UserRegister extends React.Component {
     constructor() {
@@ -52,7 +55,7 @@ export default class UserRegister extends React.Component {
         let confirmPassword = this.state.confirmPassword;
         let userType = this.state.userType;
 
-        if (!FirstName || !lastName || !emial || !userDesignation) {
+        if (!FirstName || !lastName || !email || !userDesignation) {
             this.setState({errStr:'Please fill this field', mobileErr:'Enter valid mobile number', passwdErr :'enter valid passwd'});
             return false;
         }
@@ -73,6 +76,7 @@ export default class UserRegister extends React.Component {
             user_type:userType,
             org_id:Api._getKey('org_id'),
             password:confirmPassword,
+            first_user_bit:true,
         }
         UserInfoStores.showLoader(true);
         LoginRegisterAction._firstUserRegister(data);
