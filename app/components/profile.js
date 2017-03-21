@@ -207,7 +207,7 @@ export default class Profile extends React.Component {
                                 <h3 style={{fontFamily:'Roboto-Light'}}>{userInfoObj.first_name+' '+userInfoObj.last_name}</h3>
                                 <h4 style={{fontFamily:'Roboto-Light', fontWeight:'bold'}}>{userInfoObj.user_designation} at {userInfoObj.org.org_name}</h4>
                                 <h5 style={{fontFamily:'Roboto-Light',color:'#404040', fontWeight:'bold'}}>+91 {userInfoObj.user_mobile} | {userInfoObj.user_mail}</h5>
-                                <h5 style={{fontFamily:'Roboto-Light', fontWeight:'bold',color:'#404040'}}>Login type: {userInfoObj.user_type == '1' ? 'Admin' : 'Employee'}</h5>
+                                <h5 style={{fontFamily:'Roboto-Light', fontWeight:'bold',color:'#404040'}}>{userInfoObj.user_type == '1' ? 'Admin' : 'Employee'}</h5>
                             </div>
                         </div>);
             }

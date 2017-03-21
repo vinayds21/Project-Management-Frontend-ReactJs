@@ -15,8 +15,15 @@ import Style from '../constants/style';
 import Header from '../constants/header';
 import {hashHistory, Link} from 'react-router';
 import SaveButton from '../constants/savebutton';
+import Chip from 'material-ui/Chip';
 import SecondarySaveButton from '../constants/secondarysavebutton';
 import Api from '../constants/api';
+import ReactTooltip from 'react-tooltip';
+
+import Book from 'material-ui/svg-icons/action/book';
+import Assignment from 'material-ui/svg-icons/action/assignment';
+import Bug from 'material-ui/svg-icons/action/bug-report';
+import AddBox from 'material-ui/svg-icons/content/add-box';
 
 import UserInfoStores from '../stores/UserInfoStores';
 import * as UserInfoAction from '../actions/userinfoaction';
@@ -31,10 +38,14 @@ export default class Dashboard extends React.Component {
             userInfo:{},
             allProjects:[],
             alltasks:[],
+            taskLoadbit:true,
+            projectLoadBit:true,
         }
         this._getUserStoreChange = this._getUserStoreChange.bind(this);
         this._getDashboardStoreChange = this._getDashboardStoreChange.bind(this);
         this._getProjectView = this._getProjectView.bind(this);
+        this._getStatusString = this._getStatusString.bind(this);
+        this._getTaskTypeString = this._getTaskTypeString.bind(this);
     }
 
     componentWillMount(){
@@ -67,14 +78,114 @@ export default class Dashboard extends React.Component {
             let allProjects = DashboardStores._getAllOrgProjects();
             if (allProjects && allProjects.length) {
                 console.log('allProjects',allProjects);
-                this.setState({allProjects:allProjects});
+                this.setState({allProjects:allProjects,projectLoadBit:false});
             }
         }
         if (type == 'my_tasks') {
             let alltasks = DashboardStores._getAllMyTasks();
             if (alltasks && alltasks.length) {
                 console.log('alltasks',alltasks);
-                this.setState({alltasks:alltasks});
+                this.setState({alltasks:alltasks,taskLoadbit:false});
+            }
+        }
+    }
+
+    _getTaskTypeString(taskType){
+        if (taskType == '0') {
+            return (<AddBox style={{color:'#4ECC92'}} data-tip="New Requirement"/>);
+        }
+        else if (taskType == '1') {
+            return (<Bug style={{color:'#E63D3D'}} data-tip="Bug"/>);
+        }
+    }
+
+    _getStatusString(status, type){
+        if (type == 'project') {
+            if (status == '0') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#568fe4">
+                              Open
+                            </Chip>
+                        </div>);
+            }
+            else if (status == '1') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#9c72e0">
+                              In Progress
+                            </Chip>
+                        </div>);
+            }
+            else if (status == '2') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#58deec">
+                              Completed
+                            </Chip>
+                        </div>);
+            }
+            else if (status == '3') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#ec5858">
+                              Blocked
+                            </Chip>
+                        </div>);
+            }
+            else if (status == '4') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#4ecc92">
+                              In Production
+                            </Chip>
+                        </div>);
+            }
+        }
+        else{
+            if (status == '0') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#568fe4">
+                              Open
+                            </Chip>
+                        </div>);
+            }
+            else if (status == '1') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#ecaa58">
+                              Assigned
+                            </Chip>
+                        </div>);
+            }
+            else if (status == '2') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#9c72e0">
+                              In Progress
+                            </Chip>
+                        </div>);
+            }
+            else if (status == '3') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#ece158">
+                              In QA
+                            </Chip>
+                        </div>);
+            }
+            else if (status == '4') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#58deec">
+                              Testing Done
+                            </Chip>
+                        </div>);
+            }
+            else if (status == '5') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#4ecc92">
+                              In Production
+                            </Chip>
+                        </div>);
+            }
+            else if (status == '6') {
+                return (<div>
+                            <Chip labelStyle={{lineHeight:'20px', fontSize:'12px', color:'#ffffff', fontFamily:'Roboto-Medium'}} backgroundColor="#ec5858">
+                              Blocked
+                            </Chip>
+                        </div>);
             }
         }
     }
@@ -86,16 +197,15 @@ export default class Dashboard extends React.Component {
             for(let i=0;i<allTasks.length;i++){
                 tempArr.push(<Grid key={'myTasks-'+i} style={{padding:0, margin:0, borderBottom:'1px solid #e0e0e0'}}>
                                 <Cell col={8}>
-                                    <h5 style={{fontFamily:'Roboto-Medium'}}>{allTasks[i].name}</h5>
+                                    <h5 style={{fontFamily:'Roboto-Medium'}}>{this._getTaskTypeString(allTasks[i].task_type)}<ReactTooltip/> {allTasks[i].name}</h5>
                                     <div style={{fontFamily:'Roboto-Light'}}>
                                         <div>Description: {allTasks[i].description || 'No Description'}</div>
                                         <div>Related Project: {allTasks[i].project.name}</div>
                                     </div>
                                 </Cell>
                                 <Cell col={4}>
-                                    <div style={{fontFamily:'Roboto-Light', marginTop:5}}>
-                                        <div>Status: {allTasks[i].status}</div>
-                                        <div>Type: {allTasks[i].task_type}</div>
+                                    <div style={{fontFamily:'Roboto-Light', marginTop:15}}>
+                                        <div>{this._getStatusString(allTasks[i].status,'task')}</div>
                                     </div>
                                 </Cell>
                             </Grid>);
@@ -103,7 +213,12 @@ export default class Dashboard extends React.Component {
             return tempArr;
         }
         else{
-            return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>No Tasks Found</h5></div>);
+            if (this.state.taskLoadbit) {
+                return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>Loading Tasks</h5></div>);
+            }
+            else{
+                return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>No Tasks Found</h5></div>);
+            }
         }
     }
 
@@ -112,19 +227,27 @@ export default class Dashboard extends React.Component {
         if (AllProjectsArr && AllProjectsArr.length) {
             let temp = [];
             for(let i=0;i<AllProjectsArr.length;i++){
-                temp.push(<div key={'project-'+i}>
-                            <h5 style={{fontFamily:'Roboto-Medium'}}>{AllProjectsArr[i].project_name}</h5>
-                            <div style={{fontFamily:'Roboto-Light'}}>
-                                <div>Description: {AllProjectsArr[i].project_desc || 'No Description'}</div>
-                                <div>Status: {AllProjectsArr[i].project_status}</div>
-                            </div>
-                            <Divider style={{marginTop:10}}/>
-                        </div>);
+                temp.push(<Grid key={'project-'+i} style={{padding:0, margin:0, borderBottom:'1px solid #e0e0e0'}}>
+                            <Cell col={8}>
+                                <h5 style={{fontFamily:'Roboto-Medium'}}>{AllProjectsArr[i].project_name}</h5>
+                                <div style={{fontFamily:'Roboto-Light'}}>Description: {AllProjectsArr[i].project_desc || 'No Description'}</div>
+                            </Cell>
+                            <Cell col={4}>
+                                <div style={{fontFamily:'Roboto-Light',marginTop:15}}>
+                                    <div>{this._getStatusString(AllProjectsArr[i].project_status,'project')}</div>
+                                </div>
+                            </Cell>
+                        </Grid>);
             }
             return temp;
         }
         else{
-            return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>No Projects Found</h5></div>);
+            if (this.state.projectLoadBit) {
+                return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>Loading Projects</h5></div>);
+            }
+            else{
+                return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>No Projects Found</h5></div>);
+            }
         }
     }
 
@@ -136,25 +259,23 @@ export default class Dashboard extends React.Component {
                             <Cell col={6}>
                                 <Card expanded={true}>
                                     <CardHeader
-                                      title="All Projects"
-                                      subtitle="All project list"
+                                      title={<div style={{fontFamily:"Roboto-Medium", fontSize:'16px'}}><Book style={{color:'#4EB1BA'}}/> All Projects</div>}
                                       actAsExpander={true}
                                       showExpandableButton={false}
                                     />
-                                    <CardText expandable={true}>
+                                    <CardText expandable={true} style={{height:'530px', overflow:'scroll'}}>
                                         {this._getProjectView()}
                                     </CardText>
                                 </Card>
                             </Cell>
                             <Cell col={6}>
-                                <Card expanded={true}>
+                                <Card expanded={true} >
                                     <CardHeader
-                                      title="My Tasks"
-                                      subtitle="All tasks assigned to you"
+                                      title={<div style={{fontFamily:"Roboto-Medium", fontSize:'16px'}}><Assignment style={{color:'#4EB1BA'}}/> My Tasks</div>}
                                       actAsExpander={true}
                                       showExpandableButton={false}
                                     />
-                                    <CardText expandable={true}>
+                                    <CardText expandable={true} style={{height:'530px', overflow:'scroll'}}>
                                         {this._getTaskView()}
                                     </CardText>
                                 </Card>
