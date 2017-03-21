@@ -33,9 +33,6 @@ module.exports ={
 		if (!this._getKey('token') || !this._getKey('uid')) {
             hashHistory.push('/');
         }
-        if (this._getKey('token') && this._getKey('uid')){
-            hashHistory.push('/dashboard');
-        }
 	},
 
 	_formatAmount: function(amount)

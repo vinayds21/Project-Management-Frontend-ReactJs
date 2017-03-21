@@ -30,18 +30,26 @@ export default class Dashboard extends React.Component {
         this.state = {
             userInfo:{},
             allProjects:[],
+            alltasks:[],
         }
         this._getUserStoreChange = this._getUserStoreChange.bind(this);
         this._getDashboardStoreChange = this._getDashboardStoreChange.bind(this);
+        this._getProjectView = this._getProjectView.bind(this);
     }
 
     componentWillMount(){
         Api._checkAuth();
         UserInfoAction.getUserInfo({user_id:Api._getKey('user_id')});
         DashboardAction.getProjects({org_id:Api._getKey('org_id')});
+        DashboardAction.getTasks({user_id:Api._getKey('user_id')});
 
         UserInfoStores.on('change', this._getUserStoreChange);
         DashboardStores.on('change', this._getDashboardStoreChange);
+    }
+
+    componentWillUnmount(){
+        UserInfoStores.removeListener('change', this._getUserStoreChange);
+        DashboardStores.removeListener('change', this._getDashboardStoreChange);
     }
 
     _getUserStoreChange(type){
@@ -59,14 +67,65 @@ export default class Dashboard extends React.Component {
             let allProjects = DashboardStores._getAllOrgProjects();
             if (allProjects && allProjects.length) {
                 console.log('allProjects',allProjects);
-                this.setState({allProjects:allProjects})
+                this.setState({allProjects:allProjects});
             }
         }
-    }    
+        if (type == 'my_tasks') {
+            let alltasks = DashboardStores._getAllMyTasks();
+            if (alltasks && alltasks.length) {
+                console.log('alltasks',alltasks);
+                this.setState({alltasks:alltasks});
+            }
+        }
+    }
 
-    componentWillUnmount(){
-        UserInfoStores.removeListener('change', this._getUserStoreChange);
-        DashboardStores.removeListener('change', this._getDashboardStoreChange);
+    _getTaskView(){
+        let allTasks = this.state.alltasks;
+        if (allTasks && allTasks.length) {
+            let tempArr = [];
+            for(let i=0;i<allTasks.length;i++){
+                tempArr.push(<Grid key={'myTasks-'+i} style={{padding:0, margin:0, borderBottom:'1px solid #e0e0e0'}}>
+                                <Cell col={8}>
+                                    <h5 style={{fontFamily:'Roboto-Medium'}}>{allTasks[i].name}</h5>
+                                    <div style={{fontFamily:'Roboto-Light'}}>
+                                        <div>Description: {allTasks[i].description || 'No Description'}</div>
+                                        <div>Related Project: {allTasks[i].project.name}</div>
+                                    </div>
+                                </Cell>
+                                <Cell col={4}>
+                                    <div style={{fontFamily:'Roboto-Light', marginTop:5}}>
+                                        <div>Status: {allTasks[i].status}</div>
+                                        <div>Type: {allTasks[i].task_type}</div>
+                                    </div>
+                                </Cell>
+                            </Grid>);
+            }
+            return tempArr;
+        }
+        else{
+            return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>No Tasks Found</h5></div>);
+        }
+    }
+
+    _getProjectView(){
+        let AllProjectsArr = this.state.allProjects;
+        if (AllProjectsArr && AllProjectsArr.length) {
+            let temp = [];
+            for(let i=0;i<AllProjectsArr.length;i++){
+                temp.push(<div key={'project-'+i}>
+                            <h5 style={{fontFamily:'Roboto-Medium'}}>{AllProjectsArr[i].project_name}</h5>
+                            <div style={{fontFamily:'Roboto-Light'}}>
+                                <div>Description: {AllProjectsArr[i].project_desc || 'No Description'}</div>
+                                <div>Status: {AllProjectsArr[i].project_status}</div>
+                            </div>
+                            <Divider style={{marginTop:10}}/>
+                        </div>);
+            }
+            return temp;
+        }
+        else{
+            return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>No Projects Found</h5></div>);
+        }
     }
 
     _getView(){
@@ -75,30 +134,29 @@ export default class Dashboard extends React.Component {
                     <div>
                         <Grid>
                             <Cell col={6}>
-                                
-                            </Cell>
-                            <Cell col={6}>
                                 <Card expanded={true}>
                                     <CardHeader
                                       title="All Projects"
-                                      subtitle="All the projects you are managining/working"
+                                      subtitle="All project list"
                                       actAsExpander={true}
                                       showExpandableButton={false}
                                     />
                                     <CardText expandable={true}>
-                                        <div>
-                                            <h5 style={{fontFamily:'Roboto-Medium'}}>User Delegation Project (<span style={{fontFamily:'Roboto-Light'}}>Number of Tasks: 4</span>)</h5>
-                                        </div>
-                                        <div>
-                                            <h5 style={{fontFamily:'Roboto-Medium'}}>User Delegation Project (<span style={{fontFamily:'Roboto-Light'}}>Number of Tasks: 4</span>)</h5>
-                                        </div>
-                                        <div>
-                                            <h5 style={{fontFamily:'Roboto-Medium'}}>User Delegation Project (<span style={{fontFamily:'Roboto-Light'}}>Number of Tasks: 4</span>)</h5>
-                                        </div>
+                                        {this._getProjectView()}
                                     </CardText>
-                                    <CardActions>
-                                      <FlatButton label="Create New Project" primary={true}/>
-                                    </CardActions>
+                                </Card>
+                            </Cell>
+                            <Cell col={6}>
+                                <Card expanded={true}>
+                                    <CardHeader
+                                      title="My Tasks"
+                                      subtitle="All tasks assigned to you"
+                                      actAsExpander={true}
+                                      showExpandableButton={false}
+                                    />
+                                    <CardText expandable={true}>
+                                        {this._getTaskView()}
+                                    </CardText>
                                 </Card>
                             </Cell>
                         </Grid>

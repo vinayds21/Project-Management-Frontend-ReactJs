@@ -14,6 +14,7 @@ import Login from '../components/login';
 import Register from '../components/register';
 import UserRegister from '../components/userregister';
 import Dashboard from '../components/dashboard'
+import Profile from '../components/profile'
 
 export default class AllTabs extends React.Component{
     render(){
@@ -25,6 +26,8 @@ export default class AllTabs extends React.Component{
             case 'userregister': app = (<UserRegister/>);
                                 break;
             case 'dashboard': app = (<Dashboard/>);
+                                break;
+            case 'profile': app = (<Profile/>);
                                 break;
             default: app = (<Login/>)
         }

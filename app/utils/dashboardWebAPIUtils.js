@@ -23,5 +23,24 @@ module.exports = {
             });
         })
     },
+    _getTasks: function(query) {
+        Api._callAPI(Url.USER_TASKS,'get',query,(type,dt)=> {
+            if(type=="success"){
+                dispatcher.dispatch({
+                    type:'ALL_TASKS',
+                    response: dt.data,
+                });
+            }else{
+                dispatcher.dispatch({
+                    type:'SNACKBAR',
+                    str: Api._showErrorMsg(dt.status,dt.responseJSON||'')
+                });
+            }
+            dispatcher.dispatch({
+                type: 'LOADER',
+                loader: false
+            });
+        })
+    },
 };
 
