@@ -190,14 +190,14 @@ export default class Dashboard extends React.Component {
             let tempArr = [];
             for(let i=0;i<allTasks.length;i++){
                 tempArr.push(<Grid key={'myTasks-'+i} style={{padding:0, margin:0, borderBottom:'1px solid #e0e0e0'}}>
-                                <Cell col={8}>
+                                <Cell col={10}>
                                     <h5 style={{fontFamily:'Roboto-Medium'}}>{this._getTaskTypeString(allTasks[i].task_type)}<ReactTooltip/> {allTasks[i].name}</h5>
                                     <div style={{fontFamily:'Roboto-Light'}}>
                                         <div>Description: {allTasks[i].description || 'No Description'}</div>
                                         <div>Related Project: {allTasks[i].project.name}</div>
                                     </div>
                                 </Cell>
-                                <Cell col={4}>
+                                <Cell col={2}>
                                     <div style={{fontFamily:'Roboto-Light', marginTop:15}}>
                                         <div>{this._getStatusString(allTasks[i].status,'task')}</div>
                                     </div>
@@ -211,7 +211,10 @@ export default class Dashboard extends React.Component {
                 return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>Loading Tasks</h5></div>);
             }
             else{
-                return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>No Tasks Found</h5></div>);
+                return (<div style={{textAlign:'center',marginTop:'80px', fontFamily:'Roboto-Light'}}>
+                            <i className="material-icons" style={{fontSize:'120px',color:'#a7e1e6'}}>assignment</i>
+                            <h4 style={{color:'#49bac3'}}>You have no tasks assigned</h4>
+                        </div>);
             }
         }
     }
@@ -222,11 +225,11 @@ export default class Dashboard extends React.Component {
             let temp = [];
             for(let i=0;i<AllProjectsArr.length;i++){
                 temp.push(<Grid key={'project-'+i} style={{padding:0, margin:0, borderBottom:'1px solid #e0e0e0'}}>
-                            <Cell col={8}>
+                            <Cell col={10}>
                                 <h5 style={{fontFamily:'Roboto-Medium'}}>{AllProjectsArr[i].project_name}</h5>
                                 <div style={{fontFamily:'Roboto-Light'}}>Description: {AllProjectsArr[i].project_desc || 'No Description'}</div>
                             </Cell>
-                            <Cell col={4}>
+                            <Cell col={2}>
                                 <div style={{fontFamily:'Roboto-Light',marginTop:15}}>
                                     <div>{this._getStatusString(AllProjectsArr[i].project_status,'project')}</div>
                                 </div>
@@ -240,7 +243,10 @@ export default class Dashboard extends React.Component {
                 return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>Loading Projects</h5></div>);
             }
             else{
-                return (<div><h5 style={{fontFamily:'Roboto-Medium'}}>No Projects Found</h5></div>);
+                return (<div style={{textAlign:'center',marginTop:'80px', fontFamily:'Roboto-Light'}}>
+                            <i className="material-icons" style={{fontSize:'120px',color:'#a7e1e6'}}>book</i>
+                            <h4 style={{color:'#49bac3'}}>Currently no projects added</h4>
+                        </div>);
             }
         }
     }

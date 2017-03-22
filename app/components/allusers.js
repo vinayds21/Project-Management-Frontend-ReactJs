@@ -21,6 +21,7 @@ import Api from '../constants/api';
 import MenuItem from 'material-ui/MenuItem';
 import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
+import People from 'material-ui/svg-icons/social/people';
 import Subheader from 'material-ui/Subheader';
 import SelectField from 'material-ui/SelectField';
 
@@ -187,7 +188,7 @@ export default class Users extends React.Component {
                             <Cell col={6}>
                                 <Card>
                                     <CardHeader
-                                      title={<div style={{fontFamily:"Roboto-Medium", fontSize:'16px'}}><AccountCircle style={{color:'#4EB1BA'}}/> All Users</div>}
+                                      title={<div style={{fontFamily:"Roboto-Medium", fontSize:'16px'}}><People style={{color:'#4EB1BA'}}/> All Users</div>}
                                       actAsExpander={true}
                                       showExpandableButton={false}
                                     />
