@@ -8,3 +8,7 @@ export function getUserInfo(inputData){
 export function editUserInfo(inputData){
     UserInfoWebAPIUtils._editUserInfo(inputData);
 }
+
+export function getAllOrgUsers(inputData){
+    UserInfoWebAPIUtils._getAllOrgUsers(inputData);
+}

@@ -39,5 +39,24 @@ module.exports = {
             });
         })
     },
+    _getAllOrgUsers: function(query) {
+        Api._callAPI(Url.ORG_USERS,'get',query,(type,dt)=> {
+            if(type=="success"){
+                dispatcher.dispatch({
+                    type:'ORG_USERS',
+                    response: dt.res_data,
+                });
+            }else{
+                dispatcher.dispatch({
+                    type:'SNACKBAR',
+                    str: Api._showErrorMsg(dt.status,dt.responseJSON||'')
+                })
+            }
+            dispatcher.dispatch({
+                type: 'LOADER',
+                loader: false
+            });
+        })
+    },
 };
 

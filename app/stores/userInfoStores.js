@@ -9,6 +9,7 @@ class UserInfoStores extends EventEmitter{
 
 	initData(){
 		this.userInfo={};
+		this.allOrgUsers= [];
 	}
 
 	showSnackbar(str){
@@ -28,6 +29,15 @@ class UserInfoStores extends EventEmitter{
 		this.emit('change', 'userInfo');
 	}
 
+	setOrgUserData(orgUserArr){
+		this.allOrgUsers = orgUserArr;
+		this.emit('change', 'org_users');
+	}
+
+	_getOrgUsers(){
+		return this.allOrgUsers;
+	}
+
 	_getUserInfo(){
 		return this.userInfo;
 	}
@@ -44,6 +54,10 @@ class UserInfoStores extends EventEmitter{
 			}
 			case 'USERINFO':{
 				this.setUserData(action.response);
+				break;
+			}
+			case 'ORG_USERS':{
+				this.setOrgUserData(action.response);
 				break;
 			}
 			case 'CLEAR_ALL':{

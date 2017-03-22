@@ -7,4 +7,5 @@ module.exports = {
     ORG_PROJECTS:'tasks/v1/orgproject/',
     USER_TASKS:'tasks/v1/usertasks/',
     USER_INFO:'user/v1/orguser/',
+    ORG_USERS:'user/v1/orguser/',
 }

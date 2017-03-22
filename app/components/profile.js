@@ -1,6 +1,6 @@
 /*
 Author: Vinay D S
-Page Desc: Main dashboard page
+Page Desc: user profile page
 */
 
 import React from 'react';
@@ -41,7 +41,6 @@ export default class Profile extends React.Component {
     componentWillMount(){
         Api._checkAuth();
         UserInfoAction.getUserInfo({user_id:Api._getKey('user_id')});
-
         UserInfoStores.on('change', this._getUserStoreChange);
     }
 

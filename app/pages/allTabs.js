@@ -13,8 +13,9 @@ import Styles from '../constants/style';
 import Login from '../components/login';
 import Register from '../components/register';
 import UserRegister from '../components/userregister';
-import Dashboard from '../components/dashboard'
-import Profile from '../components/profile'
+import Dashboard from '../components/dashboard';
+import Profile from '../components/profile';
+import Users from '../components/allusers';
 
 export default class AllTabs extends React.Component{
     render(){
@@ -28,6 +29,8 @@ export default class AllTabs extends React.Component{
             case 'dashboard': app = (<Dashboard/>);
                                 break;
             case 'profile': app = (<Profile/>);
+                                break;
+            case 'users': app = (<Users/>);
                                 break;
             default: app = (<Login/>)
         }
