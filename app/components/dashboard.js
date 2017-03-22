@@ -75,18 +75,12 @@ export default class Dashboard extends React.Component {
 
     _getDashboardStoreChange(type){
         if (type == 'org_projects') {
-            let allProjects = DashboardStores._getAllOrgProjects();
-            if (allProjects && allProjects.length) {
-                console.log('allProjects',allProjects);
-                this.setState({allProjects:allProjects,projectLoadBit:false});
-            }
+            let allProjects = DashboardStores._getAllOrgProjects()||[];
+            this.setState({allProjects:allProjects,projectLoadBit:false});
         }
         if (type == 'my_tasks') {
-            let alltasks = DashboardStores._getAllMyTasks();
-            if (alltasks && alltasks.length) {
-                console.log('alltasks',alltasks);
-                this.setState({alltasks:alltasks,taskLoadbit:false});
-            }
+            let alltasks = DashboardStores._getAllMyTasks()||[];
+            this.setState({alltasks:alltasks,taskLoadbit:false});
         }
     }
 

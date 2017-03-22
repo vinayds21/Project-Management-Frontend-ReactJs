@@ -66,7 +66,7 @@ export default class Header extends React.Component{
                     <AppBar title={<span style={{fontSize:'18px', fontFamily:'Roboto-Light', color:'white'}}>Main Menu</span>} iconElementLeft={<div></div>}/>
                     <MenuItem onClick={()=>{this.setState({open: !this.state.open})}} leftIcon={<ArrowBack/>}>Collapse</MenuItem>
                     <MenuItem onClick={()=>{hashHistory.push('/profile')}} leftIcon={<AccountCircle/>}>Profile</MenuItem>
-                    <MenuItem leftIcon={<People/>}>Users</MenuItem>
+                    <MenuItem onClick={()=>{hashHistory.push('/users')}} leftIcon={<People/>}>Users</MenuItem>
                     <MenuItem leftIcon={<Power/>} onClick={this._logout.bind(this)}>Log Out</MenuItem>
                   </Drawer>
                 </div>

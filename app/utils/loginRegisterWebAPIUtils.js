@@ -2,6 +2,7 @@ import Api from '../constants/api';
 import Url from '../constants/urls';
 import dispatcher from "../dispatchers/dispatcher";
 import {hashHistory} from 'react-router';
+import UserInfoWebAPIUtils from "../utils/userinfoWebAPIUtils";
 
 module.exports = {
     userLogin: function(query) {
@@ -51,11 +52,16 @@ module.exports = {
     firstUserRegister: function(query) {
         Api._callAPI(Url.USER_REGISTER,'post',query,(type,dt)=> {
             if(type=="success"){
-                dispatcher.dispatch({
-                    type:'SNACKBAR',
-                    str: dt.res_str,
-                });
-                hashHistory.push('/');
+                if (query.first_user_bit) {
+                     dispatcher.dispatch({
+                        type:'SNACKBAR',
+                        str: dt.res_str,
+                    });
+                    hashHistory.push('/');
+                }
+                else{
+                    UserInfoWebAPIUtils._getAllOrgUsers({org_id:Api._getKey('org_id')});
+                }
             }else{
                 dispatcher.dispatch({
                     type:'SNACKBAR',

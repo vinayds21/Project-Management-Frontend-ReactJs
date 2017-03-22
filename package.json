@@ -42,14 +42,15 @@
     "react-image-lightbox": "^3.3.0",
     "react-mdl": "^1.7.1",
     "react-messenger-plugin": "^1.0.1",
+    "react-notify-toast": "^0.1.5",
     "react-router": "^2.7.0",
     "react-select": "^1.0.0-beta14",
     "react-slick": "^0.13.6",
     "react-tag-input": "^4.3.1",
     "react-tap-event-plugin": "^2.0.1",
     "react-tooltip": "^3.1.8",
-    "recharts": "^0.19.0",
     "rebuild": "^0.1.2",
+    "recharts": "^0.19.0",
     "selectivity": "^3.0.0"
   },
   "devDependencies": {

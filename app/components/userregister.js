@@ -36,14 +36,6 @@ export default class UserRegister extends React.Component {
         }
     }
 
-    componentWillMount(){
-
-    }
-
-    componentWillUnmount(){
-
-    }
-
     _handleSubmit(evt){
         evt.preventDefault();
         let FirstName = this.state.fName;
@@ -193,7 +185,7 @@ export default class UserRegister extends React.Component {
                                         }}>
                                           <MenuItem key={9859} value="2" primaryText="Select user type"/>
                                           <MenuItem key={487643} value="0" primaryText="Employee"/>
-                                          <MenuItem key={6348} value="1" primaryText="Manager"/>
+                                          <MenuItem key={6348} value="1" primaryText="Admin"/>
                                     </SelectField>
                                     <TextField
                                         id="designation"

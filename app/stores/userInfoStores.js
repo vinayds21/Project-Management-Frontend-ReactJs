@@ -25,7 +25,6 @@ class UserInfoStores extends EventEmitter{
 
 	setUserData(userData){
 		this.userInfo = userData;
-		console.log('in emit', this.userInfo);
 		this.emit('change', 'userInfo');
 	}
 
