@@ -5,6 +5,8 @@ module.exports = {
     USER_LOGIN:'user/v1/login/',
 
     ORG_PROJECTS:'tasks/v1/orgproject/',
+    SUBMIT_PROJECTS:'tasks/v1/project/',
+    GET_PROJECT_DETAIL:'tasks/v1/project/',
     USER_TASKS:'tasks/v1/usertasks/',
     USER_INFO:'user/v1/orguser/',
     ORG_USERS:'user/v1/orgusers/',

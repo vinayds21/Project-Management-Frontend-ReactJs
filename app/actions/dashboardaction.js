@@ -8,3 +8,11 @@ export function getProjects(inputData){
 export function getTasks(inputData){
     DashboardWebAPIUtils._getTasks(inputData);
 }
+
+export function getParticularProjectDetails(inputData) {
+    DashboardWebAPIUtils._getParticularProjectDetails(inputData);
+}
+
+export function submitProject(inputData, methodType) {
+    DashboardWebAPIUtils._submitProject(inputData,methodType);
+}

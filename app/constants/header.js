@@ -49,10 +49,11 @@ export default class Header extends React.Component{
                   <Toolbar style={{background:'#dadada'}}>
                     <ToolbarGroup firstChild={true}>
                         <FlatButton
-                        style={{margin:'0px 5px'}}
+                          style={{margin:'0px 5px'}}
                           label="Create Project"
                           secondary={true}
                           rippleColor='none'
+                          onClick={()=>{hashHistory.push('/projects')}}
                         />
                         <ToolbarSeparator/>
                         <FlatButton

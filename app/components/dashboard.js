@@ -194,6 +194,7 @@ export default class Dashboard extends React.Component {
                                     <h5 style={{fontFamily:'Roboto-Medium'}}>{this._getTaskTypeString(allTasks[i].task_type)}<ReactTooltip/> {allTasks[i].name}</h5>
                                     <div style={{fontFamily:'Roboto-Light'}}>
                                         <div>Description: {allTasks[i].description || 'No Description'}</div>
+                                        <div>Assigned to: {allTasks[i].user.name}</div>
                                         <div>Related Project: {allTasks[i].project.name}</div>
                                     </div>
                                 </Cell>
@@ -219,13 +220,17 @@ export default class Dashboard extends React.Component {
         }
     }
 
+    _viewProject(prjtId){
+        hashHistory.push('/projects/?'+prjtId);
+    }
+
     _getProjectView(){
         let AllProjectsArr = this.state.allProjects;
         if (AllProjectsArr && AllProjectsArr.length) {
             let temp = [];
             for(let i=0;i<AllProjectsArr.length;i++){
                 temp.push(<Grid key={'project-'+i} style={{padding:0, margin:0, borderBottom:'1px solid #e0e0e0'}}>
-                            <Cell col={10}>
+                            <Cell col={10} style={{cursor:'pointer'}} onClick={this._viewProject.bind(this,AllProjectsArr[i].id)}>
                                 <h5 style={{fontFamily:'Roboto-Medium'}}>{AllProjectsArr[i].project_name}</h5>
                                 <div style={{fontFamily:'Roboto-Light'}}>Description: {AllProjectsArr[i].project_desc || 'No Description'}</div>
                             </Cell>

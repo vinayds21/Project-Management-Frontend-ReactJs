@@ -23,6 +23,41 @@ module.exports = {
             });
         })
     },
+    _submitProject: function(query,methodType) {
+        Api._callAPI(Url.SUBMIT_PROJECTS,methodType,query,(type,dt)=> {
+            if(type=="success"){
+                hashHistory.push('/dashboard');
+            }else{
+                dispatcher.dispatch({
+                    type:'SNACKBAR',
+                    str: Api._showErrorMsg(dt.status,dt.responseJSON||'')
+                })
+            }
+            dispatcher.dispatch({
+                type: 'LOADER',
+                loader: false
+            });
+        })
+    },
+    _getParticularProjectDetails: function(query) {
+        Api._callAPI(Url.GET_PROJECT_DETAIL,'get',query,(type,dt)=> {
+            if(type=="success"){
+                dispatcher.dispatch({
+                    type:'GET_PROJECT_DETAIL',
+                    response: dt,
+                });
+            }else{
+                dispatcher.dispatch({
+                    type:'SNACKBAR',
+                    str: Api._showErrorMsg(dt.status,dt.responseJSON||'')
+                });
+            }
+            dispatcher.dispatch({
+                type: 'LOADER',
+                loader: false
+            });
+        })
+    },
     _getTasks: function(query) {
         Api._callAPI(Url.USER_TASKS,'get',query,(type,dt)=> {
             if(type=="success"){

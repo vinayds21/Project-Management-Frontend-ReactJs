@@ -13,6 +13,7 @@ const muiTheme = getMuiTheme({
 
 // All pages includes here
 import AllTabs from './pages/alltabs';
+import Projects from './components/projects';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();

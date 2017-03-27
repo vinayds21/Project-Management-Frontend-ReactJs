@@ -276,8 +276,8 @@ export default class Users extends React.Component {
                                                         userType: value,
                                                     })
                                                 }}>
-                                                  <MenuItem key={487643} value="0" primaryText="Employee"/>
-                                                  <MenuItem key={6348} value="1" primaryText="Admin"/>
+                                                  <MenuItem key={4233} value="0" primaryText="Employee"/>
+                                                  <MenuItem key={4328} value="1" primaryText="Admin"/>
                                             </SelectField>
                                             <TextField
                                                 id="designation"
