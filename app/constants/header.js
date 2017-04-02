@@ -60,6 +60,7 @@ export default class Header extends React.Component{
                           label="Create Task"
                           secondary={true}
                           rippleColor='none'
+                          onClick={()=>{hashHistory.push('/tasks')}}
                         />
                     </ToolbarGroup>
                   </Toolbar>

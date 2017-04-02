@@ -16,3 +16,11 @@ export function getParticularProjectDetails(inputData) {
 export function submitProject(inputData, methodType) {
     DashboardWebAPIUtils._submitProject(inputData,methodType);
 }
+
+export function submitTask(inputData, methodType) {
+    DashboardWebAPIUtils._submitTask(inputData,methodType);
+}
+
+export function getParticularTaskDetails(inputData) {
+    DashboardWebAPIUtils._getParticularTaskDetails(inputData);
+}

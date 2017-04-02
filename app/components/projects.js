@@ -7,6 +7,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import Style from '../constants/style';
+import {hashHistory, Link} from 'react-router';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import SaveButton from '../constants/savebutton';
 import SecondarySaveButton from '../constants/secondarysavebutton';
@@ -18,6 +19,7 @@ import {Grid, Cell} from 'react-mdl';
 import Header from '../constants/header';
 import Bug from 'material-ui/svg-icons/action/bug-report';
 import AddBox from 'material-ui/svg-icons/content/add-box';
+import Assignment from 'material-ui/svg-icons/action/assignment';
 import ReactTooltip from 'react-tooltip';
 import Chip from 'material-ui/Chip';
 
@@ -89,7 +91,7 @@ export default class Projects extends React.Component {
                         <Cell col={6}>
                             <Card expanded={true}>
                                 <CardHeader
-                                  title={<div style={{fontFamily:"Roboto-Medium", fontSize:'16px'}}><Book style={{color:'#4EB1BA'}}/> Projects Details</div>}
+                                  title={<div style={{fontFamily:"Roboto-Medium", fontSize:'16px'}}><Book style={{color:'#4EB1BA'}}/> Project Details</div>}
                                   actAsExpander={true}
                                   showExpandableButton={false}
                                 />
@@ -101,7 +103,7 @@ export default class Projects extends React.Component {
                         <Cell col={6}>
                             <Card expanded={true}>
                                 <CardHeader
-                                  title={<div style={{fontFamily:"Roboto-Medium", fontSize:'16px'}}><Book style={{color:'#4EB1BA'}}/> Tasks List for the project</div>}
+                                  title={<div style={{fontFamily:"Roboto-Medium", fontSize:'16px'}}><Assignment style={{color:'#4EB1BA'}}/> Tasks List for the project</div>}
                                   actAsExpander={true}
                                   showExpandableButton={false}
                                 />
@@ -217,12 +219,16 @@ export default class Projects extends React.Component {
         }
     }
 
+    _viewTask(tskId){
+        hashHistory.push('/tasks/?'+tskId);
+    }
+
     _getTaskListView(){
         let taskArr = this.state.taskArr;
         if (taskArr && taskArr.length) {
             let tempArr = [];
             for(let i=0;i<taskArr.length;i++){
-                tempArr.push(<Grid key={'myTasks-'+i} style={{padding:0, margin:0, borderBottom:'1px solid #e0e0e0'}}>
+                tempArr.push(<Grid key={'myTasks-'+i} style={{padding:0, margin:0, borderBottom:'1px solid #e0e0e0', cursor:'pointer'}} onClick={this._viewTask.bind(this, taskArr[i].id)}>
                                 <Cell col={10}>
                                     <h5 style={{fontFamily:'Roboto-Medium'}}>{this._getTaskTypeString(taskArr[i].task_type)}<ReactTooltip/> {taskArr[i].name}</h5>
                                     <div style={{fontFamily:'Roboto-Light'}}>

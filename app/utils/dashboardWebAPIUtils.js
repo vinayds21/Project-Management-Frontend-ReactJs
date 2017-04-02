@@ -39,11 +39,46 @@ module.exports = {
             });
         })
     },
+    _submitTask: function(query,methodType) {
+        Api._callAPI(Url.SUBMIT_TASK,methodType,query,(type,dt)=> {
+            if(type=="success"){
+                hashHistory.push('/dashboard');
+            }else{
+                dispatcher.dispatch({
+                    type:'SNACKBAR',
+                    str: Api._showErrorMsg(dt.status,dt.responseJSON||'')
+                })
+            }
+            dispatcher.dispatch({
+                type: 'LOADER',
+                loader: false
+            });
+        })
+    },
     _getParticularProjectDetails: function(query) {
         Api._callAPI(Url.GET_PROJECT_DETAIL,'get',query,(type,dt)=> {
             if(type=="success"){
                 dispatcher.dispatch({
                     type:'GET_PROJECT_DETAIL',
+                    response: dt,
+                });
+            }else{
+                dispatcher.dispatch({
+                    type:'SNACKBAR',
+                    str: Api._showErrorMsg(dt.status,dt.responseJSON||'')
+                });
+            }
+            dispatcher.dispatch({
+                type: 'LOADER',
+                loader: false
+            });
+        })
+    },
+    _getParticularTaskDetails: function(query) {
+        Api._callAPI(Url.GET_TASK_DETAIL,'get',query,(type,dt)=> {
+            if(type=="success"){
+                dispatcher.dispatch({
+                    type:'GET_TASK_DETAIL',
                     response: dt,
                 });
             }else{

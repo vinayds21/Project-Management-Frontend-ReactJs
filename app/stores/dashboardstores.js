@@ -7,6 +7,7 @@ class DashboardStores extends EventEmitter{
         this.projects = [];
         this.tasks = [];
         this.ind_project = {};
+        this.ind_task = {};
     }
 
     _setAllProjects(projectArr){
@@ -36,6 +37,15 @@ class DashboardStores extends EventEmitter{
         return this.ind_project;
     }
 
+    _setTaskDetails(dataObj){
+        this.ind_task = dataObj;
+        this.emit('change', 'ind_task');
+    }
+
+    _getIndTaskDetails(){
+        return this.ind_task;
+    }
+
     _handleActions(action){
         switch(action.type){
             case 'ALL_PROJECTS':{
@@ -48,6 +58,10 @@ class DashboardStores extends EventEmitter{
             }
             case 'GET_PROJECT_DETAIL':{
                 this._setProjectDetails(action.response);
+                break;
+            }
+            case 'GET_TASK_DETAIL':{
+                this._setTaskDetails(action.response);
                 break;
             }
         }

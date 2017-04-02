@@ -16,14 +16,15 @@ import UserRegister from '../components/userregister';
 import Dashboard from '../components/dashboard';
 import Profile from '../components/profile';
 import Users from '../components/allusers';
-import Projects from '../components/projects'
+import Projects from '../components/projects';
+import Tasks from '../components/tasks';
 
 export default class AllTabs extends React.Component{
     render(){
-        let app, project_id;
+        let app, project_or_task_id;
         let tabName = this.props.params.allTabs;
         if (this.props.location.query && Object.keys(this.props.location.query).length) {
-            project_id = Object.keys(this.props.location.query)[0];
+            project_or_task_id = Object.keys(this.props.location.query)[0];
         }
         switch(tabName){
             case 'register':  app = (<Register/>);
@@ -36,7 +37,9 @@ export default class AllTabs extends React.Component{
                                 break;
             case 'users': app = (<Users/>);
                                 break;
-            case 'projects': app = (project_id ? <Projects project_id={project_id}/> : <Projects/>);
+            case 'projects': app = (project_or_task_id ? <Projects project_id={project_or_task_id}/> : <Projects/>);
+                            break;
+            case 'tasks': app = (project_or_task_id ? <Tasks task_id={project_or_task_id}/> : <Tasks/>);
                             break;
             default: app = (<Login/>)
         }

@@ -189,7 +189,7 @@ export default class Dashboard extends React.Component {
         if (allTasks && allTasks.length) {
             let tempArr = [];
             for(let i=0;i<allTasks.length;i++){
-                tempArr.push(<Grid key={'myTasks-'+i} style={{padding:0, margin:0, borderBottom:'1px solid #e0e0e0'}}>
+                tempArr.push(<Grid key={'myTasks-'+i} style={{padding:0, margin:0, borderBottom:'1px solid #e0e0e0', cursor:'pointer'}} onClick={this._viewTask.bind(this, allTasks[i].id)}>
                                 <Cell col={10}>
                                     <h5 style={{fontFamily:'Roboto-Medium'}}>{this._getTaskTypeString(allTasks[i].task_type)}<ReactTooltip/> {allTasks[i].name}</h5>
                                     <div style={{fontFamily:'Roboto-Light'}}>
@@ -218,6 +218,10 @@ export default class Dashboard extends React.Component {
                         </div>);
             }
         }
+    }
+
+    _viewTask(tskId){
+        hashHistory.push('/tasks/?'+tskId);
     }
 
     _viewProject(prjtId){
