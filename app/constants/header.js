@@ -47,22 +47,45 @@ export default class Header extends React.Component{
                                       </div>}
                   />
                   <Toolbar style={{background:'#dadada'}}>
-                    <ToolbarGroup firstChild={true}>
-                        <FlatButton
-                          style={{margin:'0px 5px'}}
-                          label="Create Project"
-                          secondary={true}
-                          rippleColor='none'
-                          onClick={()=>{hashHistory.push('/projects')}}
-                        />
-                        <ToolbarSeparator/>
-                        <FlatButton
-                          label="Create Task"
-                          secondary={true}
-                          rippleColor='none'
-                          onClick={()=>{hashHistory.push('/tasks')}}
-                        />
-                    </ToolbarGroup>
+                        {this.props.hideActions ?  
+                          <ToolbarGroup firstChild={true}>
+                            <FlatButton
+                              label="Go Back"
+                              style={{margin:'0px 5px'}}
+                              secondary={true}
+                              rippleColor='none'
+                              hoverColor='none'
+                              onClick={()=>{hashHistory.goBack()}}
+                            />
+                          </ToolbarGroup>
+                          :
+                          <ToolbarGroup firstChild={true}>
+                              <FlatButton
+                                label="Users"
+                                style={{margin:'0px 5px'}}
+                                secondary={true}
+                                rippleColor='none'
+                                hoverColor='none'
+                                onClick={()=>{hashHistory.push('/users')}}
+                              />
+                              <ToolbarSeparator/>
+                              <FlatButton
+                                label="Create Project"
+                                secondary={true}
+                                rippleColor='none'
+                                hoverColor='none'
+                                onClick={()=>{hashHistory.push('/projects')}}
+                              />
+                              <ToolbarSeparator/>
+                              <FlatButton
+                                label="Create Task"
+                                secondary={true}
+                                rippleColor='none'
+                                hoverColor='none'
+                                onClick={()=>{hashHistory.push('/tasks')}}
+                              />
+                          </ToolbarGroup> 
+                        }
                   </Toolbar>
                   <Drawer open={this.state.open} style={{fontSize:'18px', fontFamily:'Roboto-Light'}}>
                     <AppBar title={<span style={{fontSize:'18px', fontFamily:'Roboto-Light', color:'white'}}>Main Menu</span>} iconElementLeft={<div></div>}/>

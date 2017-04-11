@@ -293,7 +293,7 @@ export default class Tasks extends React.Component {
 
     _getView(){
         return (<div>
-                    <Header userName={this.state.userInfo.first_name+' '+this.state.userInfo.last_name}/>
+                    <Header userName={this.state.userInfo.first_name+' '+this.state.userInfo.last_name} hideActions={true}/>
                     <div>
                         <Grid>
                             <Cell col={3}></Cell>

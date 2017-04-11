@@ -352,7 +352,7 @@ export default class Projects extends React.Component {
 
     _getView(){
         return (<div>
-                    <Header userName={this.state.userInfo.first_name+' '+this.state.userInfo.last_name}/>
+                    <Header userName={this.state.userInfo.first_name+' '+this.state.userInfo.last_name} hideActions={true}/>
                     <div>
                         {this.props.project_id ? 
                             <div>{this._getProjectDetailView()}</div>
