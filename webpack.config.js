@@ -50,7 +50,7 @@ module.exports = {
       minChunks: Infinity,
       filename: 'vendor.bundle.js'
     }),
-    new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       // Don't beautify output (enable for neater output)
@@ -73,7 +73,7 @@ module.exports = {
       minChunks: Infinity,
       filename: 'vendor.bundle.js'
     }),
-    new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       // Don't beautify output (enable for neater output)
